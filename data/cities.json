@@ -1,0 +1,99 @@
+[
+  {
+    "name": "Aveiro",
+    "neighbours": [
+      { "name": "Porto", "distance": 68 },
+      { "name": "Viseu", "distance": 95 },
+      { "name": "Coimbra", "distance": 68 },
+      { "name": "Leiria", "distance": 115 }
+    ]
+  },
+  {
+    "name": "Braga",
+    "neighbours": [
+      { "name": "Viana do Castelo", "distance": 48 },
+      { "name": "Vila Real", "distance": 106 },
+      { "name": "Porto", "distance": 53 }
+    ]
+  },
+  {
+    "name": "Bragança",
+    "neighbours": [
+      { "name": "Vila Real", "distance": 137 },
+      { "name": "Guarda", "distance": 202 }
+    ]
+  },
+  {
+    "name": "Beja",
+    "neighbours": [
+      { "name": "Évora", "distance": 78 },
+      { "name": "Faro", "distance": 152 },
+      { "name": "Setúbal", "distance": 142 }
+    ]
+  },
+  {
+    "name": "Castelo Branco",
+    "neighbours": [
+      { "name": "Coimbra", "distance": 159 },
+      { "name": "Guarda", "distance": 106 },
+      { "name": "Portalegre", "distance": 80 },
+      { "name": "Évora", "distance": 203 }
+    ]
+  },
+  {
+    "name": "Coimbra",
+    "neighbours": [
+      { "name": "Viseu", "distance": 96 },
+      { "name": "Leiria", "distance": 67 }
+    ]
+  },
+  {
+    "name": "Évora",
+    "neighbours": [
+      { "name": "Lisboa", "distance": 150 },
+      { "name": "Santarém", "distance": 117 },
+      { "name": "Portalegre", "distance": 131 },
+      { "name": "Setúbal", "distance": 103 }
+    ]
+  },
+  {
+    "name": "Faro",
+    "neighbours": [
+      { "name": "Setúbal", "distance": 249 },
+      { "name": "Lisboa", "distance": 299 }
+    ]
+  },
+  {
+    "name": "Guarda",
+    "neighbours": [
+      { "name": "Vila Real", "distance": 157 },
+      { "name": "Viseu", "distance": 85 }
+    ]
+  },
+  {
+    "name": "Leiria",
+    "neighbours": [
+      { "name": "Lisboa", "distance": 129 },
+      { "name": "Santarém", "distance": 70 }
+    ]
+  },
+  {
+    "name": "Lisboa",
+    "neighbours": [
+      { "name": "Santarém", "distance": 78 },
+      { "name": "Setúbal", "distance": 50 }
+    ]
+  },
+  {
+    "name": "Porto",
+    "neighbours": [
+      { "name": "Viana do Castelo", "distance": 71 },
+      { "name": "Vila Real", "distance": 116 },
+      { "name": "Viseu", "distance": 133 }
+    ]
+  },
+  {
+    "name": "Vila Real",
+    "neighbours": [{ "name": "Viseu", "distance": 110 }]
+  }
+]

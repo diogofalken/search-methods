@@ -4,10 +4,10 @@ Develop in Python, a **problem-solving agent** can look for a path, according to
 
 ## Requirements
 
-The agent must implement two **blind search** methods:
-    - [ ] Uniform Cost  
-    - [ ] Depth-Limited
+The agent must implement two **blind search** methods:  
+- [ ] Uniform Cost  
+- [ ] Depth-Limited
 
-You must also implement two methods of **heuristic search**:
-    - [ ] Procura sôfrega  
-    - [ ] A*
+You must also implement two methods of **heuristic search**:  
+- [ ] Procura sôfrega  
+- [ ] A\*

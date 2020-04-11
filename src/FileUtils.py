@@ -27,6 +27,8 @@ class FileUtils:
                     self.arrayCities.append(currentNeighbour)
                 currentCity.addNeighbour(currentNeighbour.name,
                                          neighbour["distance"])
+                currentNeighbour.addNeighbour(currentCity.name,
+                                         neighbour["distance"])
 
     def loadJsonCitiesSL(self, _dirname):
         # Get data from file

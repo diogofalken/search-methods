@@ -20,9 +20,8 @@ class City:
     def setDistanceFaro(self, distance):
         self.distanceFaro = distance
 
-    def getNeighbours(self):
+    def getInfo(self):
+        print(f"---------- {self.name} ----------")
         for neighbour in self.neighbours:
             print(f"{self.name} -> {neighbour.name}: {neighbour.distance}km")
-
-    def getFaroDistance(self):
         print(f"{self.name} -> Faro: {self.distanceFaro}")

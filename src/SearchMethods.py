@@ -1,6 +1,6 @@
 class SearchMethods:
     def __init__(self, _cities):
-        super().cities = _cities
+        self.cities = _cities
 
     def uniformCostSearch(beginCity, endCity):
         pass

@@ -29,7 +29,7 @@ Data from `./data` folder to be loaded:
 
 The agent must implement two **blind search** methods:
 
-- [ ] Uniform Cost (@diogofalken)
+- [x] Uniform Cost (@diogofalken)
 - [ ] Depth-Limited (@Kurvatov)
 
 You must also implement two methods of **heuristic search**:

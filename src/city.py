@@ -25,3 +25,6 @@ class City:
         for neighbour in self.neighbours:
             print(f"{self.name} -> {neighbour.name}: {neighbour.distance}km")
         print(f"{self.name} -> Faro: {self.distanceFaro}")
+
+    def __lt__(self, other):
+        return self.name < getattr(other, 'name', other)

@@ -33,6 +33,7 @@ class SearchMethods:
                         queue.put((total_cost, cur, path + f" -> {i.name}"))
 
     def depthLimitSearch(self, beginCity, endCity, limit):
+        limitIterations = limit
         limit -= 1
         # Flag to identify the begining of a new depth level
         flag = object()
@@ -68,7 +69,7 @@ class SearchMethods:
                     cur = self._searchCity(i.name)
                     visitedStack.append(cur)
         if not sucess:
-            print("Impossible to reach the end city for the given limit")
+            print(f"Impossible to reach {endCity} for the limit of {limitIterations} iterations")
 
 
 
@@ -79,13 +80,13 @@ class SearchMethods:
         while len(path)>1:
             node = path.pop(0)
             node = self._searchCity(node)
-            constructedPath += node.name + " -> "
+            constructedPath += f"{node.name} -> "
             for i in node.neighbours:
                 if i.name == path[0]:
                     if len(path) == 1:
                         constructedPath += i.name
                     totalCost = totalCost + i.distance
-        constructedPath += " = " + str(totalCost)
+        constructedPath += f" = {totalCost}"
         return constructedPath
 
     def sofregaSearch(beginCity, endCity="Faro"):

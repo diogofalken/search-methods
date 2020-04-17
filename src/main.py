@@ -20,4 +20,4 @@ if __name__ == "__main__":
     searchMethods.uniformCostSearch("Viana do Castelo", "Faro")
 
     # Depth Limit Search
-    searchMethods.depthLimitSearch("Viana do Castelo", "Faro",6)
+    searchMethods.depthLimitSearch("Viana do Castelo", "Faro",5)

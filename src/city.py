@@ -1,11 +1,11 @@
-from Neighbour import Neighbour
+from neighbour import Neighbour
 
 
 class City:
     def __init__(self, name):
         self.name = name
         self.neighbours = []
-        self.distanceFaro = 0
+        self.distanceFaro = 0 
 
     def addNeighbour(self, city, distance):
         if self.name == city:

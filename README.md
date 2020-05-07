@@ -34,7 +34,7 @@ The agent must implement two **blind search** methods:
 
 You must also implement two methods of **heuristic search**:
 
-- [ ] Greedy Search (@EdwinOliveira)
+- [x] Sofrega Search (@EdwinOliveira)
 - [ ] A\* (@EdwinOliveira)
 
 ## Getting started

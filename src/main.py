@@ -1,9 +1,9 @@
 import sys
 sys.path.append('../')
 
-from City import City
-from FileUtils import FileUtils
 from SearchMethods import SearchMethods
+from FileUtils import FileUtils
+from city import City
 
 if __name__ == "__main__":
     # Get all the info from JSON files and save it to array cities
@@ -19,5 +19,8 @@ if __name__ == "__main__":
     # Uniform Cost Search
     searchMethods.uniformCostSearch("Viana do Castelo", "Faro")
 
+    # Sofrega Search
+    searchMethods.sofregaSearch("Viseu", "Faro")
+    
     # Depth Limit Search
     searchMethods.depthLimitSearch("Viana do Castelo", "Faro",5)

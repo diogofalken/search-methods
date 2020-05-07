@@ -1,4 +1,5 @@
 from queue import PriorityQueue
+import collections
 
 
 class SearchMethods:
@@ -89,10 +90,38 @@ class SearchMethods:
         constructedPath += f" = {totalCost}"
         return constructedPath
 
-    def sofregaSearch(beginCity, endCity="Faro"):
-        pass
+    def sofregaSearch(self, beginCity, endCity="Faro", distance=0):
+        # Check if input cities are valid
+        if self._cityExists(beginCity) == 0 or self._cityExists(endCity) == 0:
+            exit()
 
-    def aStarSearch(beginCity, endCity="Faro"):
+        beginCity = self._searchCity(beginCity)
+
+        if(beginCity.name == endCity):
+            print(f"City was found with the optimal distance of: {distance}")
+            exit()
+
+        # Heuristic value -> beginCity.distanceFaro
+        lowestDistance = self._searchCity(
+            beginCity.neighbours[0].name).distanceFaro
+
+        childrenDictionary = {}
+        orderedChildrenDictionary = {}
+
+        for neighbour in range(len(beginCity.neighbours)):
+            row = self._searchCity(
+                beginCity.neighbours[neighbour].name)
+            childrenDictionary[row.name] = row.distanceFaro
+            orderedChildrenDictionary = sorted(
+                childrenDictionary.items(), key=lambda x: x[1])
+
+        for neighbour in orderedChildrenDictionary:
+            distance += neighbour[1]
+            print(
+                f"We are currently at {neighbour[0]} with a total distance of {distance}")
+            self.sofregaSearch(neighbour[0], "Faro", distance)
+
+    def aStarSearch(self, beginCity, endCity="Faro"):
         pass
 
     def _searchCity(self, name):

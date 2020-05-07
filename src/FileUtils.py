@@ -1,5 +1,5 @@
 import json
-from City import City
+from city import City
 
 
 class FileUtils:

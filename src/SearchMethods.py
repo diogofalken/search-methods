@@ -33,8 +33,62 @@ class SearchMethods:
                         cur = self._searchCity(i.name)
                         queue.put((total_cost, cur, path + f" -> {i.name}"))
 
-    def depthLimitedSearch(beginCity, endCity):
-        pass
+    def depthLimitSearch(self, beginCity, endCity, limit):
+        limitIterations = limit
+        limit -= 1
+        # Flag to identify the begining of a new depth level
+        flag = object()
+        success = False
+        beginCity = self._searchCity(beginCity)
+        # Set beginCity as visited node
+        visitedStack = [beginCity]
+        # Structure to store the path
+        path = []
+        # Start algorithm
+        while visitedStack:
+            node = visitedStack.pop() 
+            if node == flag: 
+                # Finished this level; go back up one level
+                limit += 1
+                path.pop()
+            
+            # Check if current node is equals to the endCity
+            elif node.name == endCity:
+                path.append(node.name)
+                print(self.calculateDistance(path))
+                sucess = True
+                break
+               
+            elif limit != 0:
+                # go one level deeper, push sentinel
+                limit -= 1
+                path.append(node.name)
+                # Put flag to mark the begining of the level
+                visitedStack.append(flag)
+                # Get all the neighbours of the current node
+                for i in node.neighbours:
+                    cur = self._searchCity(i.name)
+                    visitedStack.append(cur)
+        if not success:
+            print(f"Impossible to reach {endCity} for the limit of {limitIterations} iterations")
+
+
+
+    # Function to calculate distance of a given path   
+    def calculateDistance(self,path):
+        totalCost = 0
+        constructedPath = ""
+        while len(path)>1:
+            node = path.pop(0)
+            node = self._searchCity(node)
+            constructedPath += f"{node.name} -> "
+            for i in node.neighbours:
+                if i.name == path[0]:
+                    if len(path) == 1:
+                        constructedPath += i.name
+                    totalCost = totalCost + i.distance
+        constructedPath += f" = {totalCost}"
+        return constructedPath
 
     def sofregaSearch(self, beginCity, endCity="Faro", distance=0):
         # Check if input cities are valid

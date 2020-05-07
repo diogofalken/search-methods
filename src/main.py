@@ -7,7 +7,7 @@ from city import City
 
 if __name__ == "__main__":
     # Get all the info from JSON files and save it to array cities
-    fileUtils = FileUtils("./data/cities.json", "./data/citiesSL.json")
+    fileUtils = FileUtils("../data/cities.json", "../data/citiesSL.json")
     arrayCities = fileUtils.getArrayCities()
 
     # Print loaded Info
@@ -21,3 +21,6 @@ if __name__ == "__main__":
 
     # Sofrega Search
     searchMethods.sofregaSearch("Viseu", "Faro")
+    
+    # Depth Limit Search
+    searchMethods.depthLimitSearch("Viana do Castelo", "Faro",5)

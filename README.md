@@ -30,11 +30,11 @@ Data from `./data` folder to be loaded:
 The agent must implement two **blind search** methods:
 
 - [x] Uniform Cost (@diogofalken)
-- [ ] Depth-Limited (@Kurvatov)
+- [x] Depth-Limited (@Kurvatov)
 
 You must also implement two methods of **heuristic search**:
 
-- [ ] Procura sôfrega (@EdwinOliveira)
+- [ ] Greedy Search (@EdwinOliveira)
 - [ ] A\* (@EdwinOliveira)
 
 ## Getting started

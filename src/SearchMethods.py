@@ -43,8 +43,13 @@ class SearchMethods:
 
         beginCity = self._searchCity(beginCity)
 
+        if(beginCity.name == beginCity.name):
+            print(
+                f" We are currently at {beginCity.name} with a total distance of: {distance}.")
+
         if(beginCity.name == endCity):
-            print(f"City was found with the optimal distance of: {distance}")
+            print(
+                f"\n {endCity} was found with the optimal distance of: {distance}.")
             exit()
 
         # Heuristic value -> beginCity.distanceFaro
@@ -63,12 +68,44 @@ class SearchMethods:
 
         for neighbour in orderedChildrenDictionary:
             distance += neighbour[1]
-            print(
-                f"We are currently at {neighbour[0]} with a total distance of {distance}")
             self.sofregaSearch(neighbour[0], "Faro", distance)
 
-    def aStarSearch(self, beginCity, endCity="Faro"):
-        pass
+    def aStarSearch(self, beginCity, endCity="Faro", distance=0):
+        # Check if input cities are valid
+        if self._cityExists(beginCity) == 0 or self._cityExists(endCity) == 0:
+            exit()
+
+        # dictionary to store values
+        aStarDictionary = {}
+
+        print(self.checkAStar(beginCity, endCity))
+
+    def checkAStar(self, beginCity, endCity, distance=0):
+        beginCity = self._searchCity(beginCity)
+
+        if(beginCity == endCity):
+            print(
+                f"\n {endCity} was found with the optimal distance of: {distance}.")
+            return distance
+
+        # Dictionary
+        childrenDictionary = {}
+        orderedChildrenDictionary = {}
+
+        for neighbour in range(len(beginCity.neighbours)):
+            row = self._searchCity(
+                beginCity.neighbours[neighbour].name)
+
+            childrenDictionary[row.name] = row.distanceFaro + \
+                beginCity.neighbours[neighbour].distance
+
+            orderedChildrenDictionary = sorted(
+                childrenDictionary.items(), key=lambda x: x[1])
+
+        for key, value in orderedChildrenDictionary:
+            row = self._searchCity(key)
+            distance += value - row.distanceFaro
+            self.checkAStar(key, "Faro", distance)
 
     def _searchCity(self, name):
         for city in self.cities:

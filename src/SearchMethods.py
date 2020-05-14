@@ -76,17 +76,17 @@ class SearchMethods:
             exit()
 
         # dictionary to store values
-        aStarDictionary = {}
+        aStarDictionary = []
 
-        print(self.checkAStar(beginCity, endCity))
+        self.checkAStar(beginCity, endCity, aStarDictionary)
 
-    def checkAStar(self, beginCity, endCity, distance=0):
+    def checkAStar(self, beginCity, endCity, aStarDictionary, distance=0):
         beginCity = self._searchCity(beginCity)
 
         if(beginCity == endCity):
             print(
                 f"\n {endCity} was found with the optimal distance of: {distance}.")
-            return distance
+            return
 
         # Dictionary
         childrenDictionary = {}

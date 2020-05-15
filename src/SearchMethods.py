@@ -70,42 +70,49 @@ class SearchMethods:
             distance += neighbour[1]
             self.sofregaSearch(neighbour[0], "Faro", distance)
 
-    def aStarSearch(self, beginCity, endCity="Faro", distance=0):
-        # Check if input cities are valid
-        if self._cityExists(beginCity) == 0 or self._cityExists(endCity) == 0:
-            exit()
+    def reconstruct_path(self,came_from, start, end, cost):
+        end = self._searchCity(end)
+        current = end
+        path = [current]
+        while current != start:
+            current = came_from[current]
+            if current != None:
+                path.append(current)
+        constructedPath = start.name
+        while len(path)>1:
+            node = path.pop(len(path)-2)
+            if node != None:
+                constructedPath += f" -> {node.name} "
+        constructedPath += f" = {cost}"
+        print(constructedPath)
+        
+        return path
 
-        # dictionary to store values
-        aStarDictionary = []
+    def aStarSearch(self, beginCity, endCity="Faro"):
 
-        self.checkAStar(beginCity, endCity, aStarDictionary)
-
-    def checkAStar(self, beginCity, endCity, aStarDictionary, distance=0):
+        queue = PriorityQueue()
         beginCity = self._searchCity(beginCity)
+        queue.put(beginCity, 0)
+        cameFrom= {beginCity: None}
+        costSoFar = {beginCity: 0}
+ 
+        while not queue.empty():
+            current = queue.get()
 
-        if(beginCity == endCity):
-            print(
-                f"\n {endCity} was found with the optimal distance of: {distance}.")
-            return
+            if current.name == endCity:
+                break
 
-        # Dictionary
-        childrenDictionary = {}
-        orderedChildrenDictionary = {}
+            for node in current.neighbours:
 
-        for neighbour in range(len(beginCity.neighbours)):
-            row = self._searchCity(
-                beginCity.neighbours[neighbour].name)
+                newCost = costSoFar[current] + node.distance
 
-            childrenDictionary[row.name] = row.distanceFaro + \
-                beginCity.neighbours[neighbour].distance
+                if self._searchCity(node.name) not in costSoFar or newCost < costSoFar[self._searchCity(node.name)]:
+                    costSoFar[self._searchCity(node.name)] = newCost
+                    priority = newCost + abs(current.distanceFaro - self._searchCity(node.name).distanceFaro)
+                    queue.put(self._searchCity(node.name), priority)
+                    cameFrom[self._searchCity(node.name)] = current
 
-            orderedChildrenDictionary = sorted(
-                childrenDictionary.items(), key=lambda x: x[1])
-
-        for key, value in orderedChildrenDictionary:
-            row = self._searchCity(key)
-            distance += value - row.distanceFaro
-            self.checkAStar(key, "Faro", distance)
+        self.reconstruct_path(cameFrom,beginCity,endCity, costSoFar[self._searchCity(endCity)])
 
     def _searchCity(self, name):
         for city in self.cities:

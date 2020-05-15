@@ -97,8 +97,13 @@ class SearchMethods:
 
         beginCity = self._searchCity(beginCity)
 
+        if(beginCity.name == beginCity.name):
+            print(
+                f" We are currently at {beginCity.name} with a total distance of: {distance}.")
+
         if(beginCity.name == endCity):
-            print(f"City was found with the optimal distance of: {distance}")
+            print(
+                f"\n {endCity} was found with the optimal distance of: {distance}.")
             exit()
 
         # Heuristic value -> beginCity.distanceFaro
@@ -117,12 +122,51 @@ class SearchMethods:
 
         for neighbour in orderedChildrenDictionary:
             distance += neighbour[1]
-            print(
-                f"We are currently at {neighbour[0]} with a total distance of {distance}")
             self.sofregaSearch(neighbour[0], "Faro", distance)
 
+    def reconstruct_path(self,came_from, start, end, cost):
+        end = self._searchCity(end)
+        current = end
+        path = [current]
+        while current != start:
+            current = came_from[current]
+            if current != None:
+                path.append(current)
+        constructedPath = start.name
+        while len(path)>1:
+            node = path.pop(len(path)-2)
+            if node != None:
+                constructedPath += f" -> {node.name} "
+        constructedPath += f" = {cost}"
+        print(constructedPath)
+        
+        return path
+
     def aStarSearch(self, beginCity, endCity="Faro"):
-        pass
+
+        queue = PriorityQueue()
+        beginCity = self._searchCity(beginCity)
+        queue.put(beginCity, 0)
+        cameFrom= {beginCity: None}
+        costSoFar = {beginCity: 0}
+ 
+        while not queue.empty():
+            current = queue.get()
+
+            if current.name == endCity:
+                break
+
+            for node in current.neighbours:
+
+                newCost = costSoFar[current] + node.distance
+
+                if self._searchCity(node.name) not in costSoFar or newCost < costSoFar[self._searchCity(node.name)]:
+                    costSoFar[self._searchCity(node.name)] = newCost
+                    priority = newCost + abs(current.distanceFaro - self._searchCity(node.name).distanceFaro)
+                    queue.put(self._searchCity(node.name), priority)
+                    cameFrom[self._searchCity(node.name)] = current
+
+        self.reconstruct_path(cameFrom,beginCity,endCity, costSoFar[self._searchCity(endCity)])
 
     def _searchCity(self, name):
         for city in self.cities:

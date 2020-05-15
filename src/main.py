@@ -17,9 +17,15 @@ if __name__ == "__main__":
     searchMethods = SearchMethods(arrayCities)
 
     # Uniform Cost Search
-    searchMethods.uniformCostSearch("Viana do Castelo", "Faro")
+    print("\n--- Uniform Cost Search Algorithm --- \n")
+    searchMethods.uniformCostSearch("Viseu", "Faro")
+
+    # A* Search
+    print("\n--- A* Search Algorithm --- \n")
+    searchMethods.aStarSearch("Viseu", "Faro")
 
     # Sofrega Search
+    print("\n--- Sofrega Search Algorithm --- \n")
     searchMethods.sofregaSearch("Viseu", "Faro")
     
     # Depth Limit Search

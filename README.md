@@ -24,18 +24,19 @@ Search Methods
 
 Data from `./data` folder to be loaded:
 
-- [x] Cities
-- [x] Cities Straight Line to Faro
+- [x] Cities (@diogofalken)
+- [x] Cities Straight Line to Faro (@diogofalken)
 
 The agent must implement two **blind search** methods:
 
 - [x] Uniform Cost (@diogofalken)
+- [x] Uniform Cost with visited (@diogofalken)
 - [x] Depth-Limited (@Kurvatov)
 
 You must also implement two methods of **heuristic search**:
 
 - [x] Sofrega Search (@EdwinOliveira)
-- [ ] A\* (@EdwinOliveira)
+- [x] A\* (@Kurvatov)
 
 ## Getting started
 

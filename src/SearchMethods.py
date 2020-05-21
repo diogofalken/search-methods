@@ -11,6 +11,37 @@ class SearchMethods:
         if self._cityExists(beginCity) == 0 or self._cityExists(endCity) == 0:
             exit()
 
+        iterations = 0
+
+        queue = PriorityQueue()
+
+        beginCity = self._searchCity(beginCity)
+        queue.put((0, beginCity, beginCity.name))
+
+        # Start algorithm
+        while queue:
+            iterations += 1
+            cost, node, path = queue.get()
+
+            if node.name == endCity:
+                print(f"Origem: {beginCity.name}")
+                print(f"Destino: {endCity}")
+                print(f"Foram necessárias {iterations} iterações")
+                print(f"{path} = {cost}")
+                break
+
+            for i in node.neighbours:
+                total_cost = cost + i.distance
+                cur = self._searchCity(i.name)
+                queue.put((total_cost, cur, path + f" -> {i.name}"))
+
+    def uniformCostSearchVisited(self, beginCity, endCity):
+        # Check if input cities are valid
+        if self._cityExists(beginCity) == 0 or self._cityExists(endCity) == 0:
+            exit()
+
+        iterations = 0
+
         visited = set()
         queue = PriorityQueue()
 
@@ -19,11 +50,15 @@ class SearchMethods:
 
         # Start algorithm
         while queue:
+            iterations += 1
             cost, node, path = queue.get()
             if node.name not in visited:
                 visited.add(node.name)
 
                 if node.name == endCity:
+                    print(f"Origem: {beginCity.name}")
+                    print(f"Destino: {endCity}")
+                    print(f"Foram necessárias {iterations} iterações")
                     print(f"{path} = {cost}")
                     break
 
@@ -46,19 +81,19 @@ class SearchMethods:
         path = []
         # Start algorithm
         while visitedStack:
-            node = visitedStack.pop() 
-            if node == flag: 
+            node = visitedStack.pop()
+            if node == flag:
                 # Finished this level; go back up one level
                 limit += 1
                 path.pop()
-            
+
             # Check if current node is equals to the endCity
             elif node.name == endCity:
                 path.append(node.name)
                 print(self.calculateDistance(path))
                 sucess = True
                 break
-               
+
             elif limit != 0:
                 # go one level deeper, push sentinel
                 limit -= 1
@@ -70,15 +105,15 @@ class SearchMethods:
                     cur = self._searchCity(i.name)
                     visitedStack.append(cur)
         if not success:
-            print(f"Impossible to reach {endCity} for the limit of {limitIterations} iterations")
+            print(
+                f"Impossible to reach {endCity} for the limit of {limitIterations} iterations"
+            )
 
-
-
-    # Function to calculate distance of a given path   
-    def calculateDistance(self,path):
+    # Function to calculate distance of a given path
+    def calculateDistance(self, path):
         totalCost = 0
         constructedPath = ""
-        while len(path)>1:
+        while len(path) > 1:
             node = path.pop(0)
             node = self._searchCity(node)
             constructedPath += f"{node.name} -> "
@@ -97,13 +132,15 @@ class SearchMethods:
 
         beginCity = self._searchCity(beginCity)
 
-        if(beginCity.name == beginCity.name):
+        if (beginCity.name == beginCity.name):
             print(
-                f" We are currently at {beginCity.name} with a total distance of: {distance}.")
+                f" We are currently at {beginCity.name} with a total distance of: {distance}."
+            )
 
-        if(beginCity.name == endCity):
+        if (beginCity.name == endCity):
             print(
-                f"\n {endCity} was found with the optimal distance of: {distance}.")
+                f"\n {endCity} was found with the optimal distance of: {distance}."
+            )
             exit()
 
         # Heuristic value -> beginCity.distanceFaro
@@ -114,17 +151,16 @@ class SearchMethods:
         orderedChildrenDictionary = {}
 
         for neighbour in range(len(beginCity.neighbours)):
-            row = self._searchCity(
-                beginCity.neighbours[neighbour].name)
+            row = self._searchCity(beginCity.neighbours[neighbour].name)
             childrenDictionary[row.name] = row.distanceFaro
-            orderedChildrenDictionary = sorted(
-                childrenDictionary.items(), key=lambda x: x[1])
+            orderedChildrenDictionary = sorted(childrenDictionary.items(),
+                                               key=lambda x: x[1])
 
         for neighbour in orderedChildrenDictionary:
             distance += neighbour[1]
             self.sofregaSearch(neighbour[0], "Faro", distance)
 
-    def reconstruct_path(self,came_from, start, end, cost):
+    def reconstruct_path(self, came_from, start, end, cost):
         end = self._searchCity(end)
         current = end
         path = [current]
@@ -133,13 +169,13 @@ class SearchMethods:
             if current != None:
                 path.append(current)
         constructedPath = start.name
-        while len(path)>1:
-            node = path.pop(len(path)-2)
+        while len(path) > 1:
+            node = path.pop(len(path) - 2)
             if node != None:
                 constructedPath += f" -> {node.name} "
         constructedPath += f" = {cost}"
         print(constructedPath)
-        
+
         return path
 
     def aStarSearch(self, beginCity, endCity="Faro"):
@@ -147,9 +183,9 @@ class SearchMethods:
         queue = PriorityQueue()
         beginCity = self._searchCity(beginCity)
         queue.put(beginCity, 0)
-        cameFrom= {beginCity: None}
+        cameFrom = {beginCity: None}
         costSoFar = {beginCity: 0}
- 
+
         while not queue.empty():
             current = queue.get()
 
@@ -160,13 +196,18 @@ class SearchMethods:
 
                 newCost = costSoFar[current] + node.distance
 
-                if self._searchCity(node.name) not in costSoFar or newCost < costSoFar[self._searchCity(node.name)]:
+                if self._searchCity(
+                        node.name) not in costSoFar or newCost < costSoFar[
+                            self._searchCity(node.name)]:
                     costSoFar[self._searchCity(node.name)] = newCost
-                    priority = newCost + abs(current.distanceFaro - self._searchCity(node.name).distanceFaro)
+                    priority = newCost + abs(
+                        current.distanceFaro -
+                        self._searchCity(node.name).distanceFaro)
                     queue.put(self._searchCity(node.name), priority)
                     cameFrom[self._searchCity(node.name)] = current
 
-        self.reconstruct_path(cameFrom,beginCity,endCity, costSoFar[self._searchCity(endCity)])
+        self.reconstruct_path(cameFrom, beginCity, endCity,
+                              costSoFar[self._searchCity(endCity)])
 
     def _searchCity(self, name):
         for city in self.cities:

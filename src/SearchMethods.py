@@ -141,7 +141,7 @@ class SearchMethods:
             print(
                 f"\n {endCity} was found with the optimal distance of: {distance}."
             )
-            exit()
+            return False
 
         # Heuristic value -> beginCity.distanceFaro
         lowestDistance = self._searchCity(
@@ -158,7 +158,8 @@ class SearchMethods:
 
         for neighbour in orderedChildrenDictionary:
             distance += neighbour[1]
-            self.sofregaSearch(neighbour[0], "Faro", distance)
+            if self.sofregaSearch(neighbour[0], "Faro", distance) == False:
+                return False
 
     def reconstruct_path(self, came_from, start, end, cost):
         end = self._searchCity(end)

@@ -91,7 +91,7 @@ class SearchMethods:
             elif node.name == endCity:
                 path.append(node.name)
                 print(self.calculateDistance(path))
-                sucess = True
+                success = True
                 break
 
             elif limit != 0:

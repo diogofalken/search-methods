@@ -57,7 +57,7 @@ if __name__ == "__main__":
         2: Uniform Cost Search 
         3: Uniform Cost Search with visited
         4: Depth Limited Search
-        5: Sófrega Search
+        5: Sôfrega Search
         6: A*
         Q: Quit/Log Out
 
@@ -93,7 +93,7 @@ if __name__ == "__main__":
             start = input("Insert start city: ")
 
             if (validCity(arrayCities, start) == 1):
-                print("\n--- Sófrega Search Algorithm --- \n")
+                print("\n--- Sôfrega Search Algorithm --- \n")
                 searchMethods.sofregaSearch(start, "Faro")
         elif choice == "6":
             start = input("Insert start city: ")

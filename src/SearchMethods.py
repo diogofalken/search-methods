@@ -143,10 +143,6 @@ class SearchMethods:
             )
             return False
 
-        # Heuristic value -> beginCity.distanceFaro
-        lowestDistance = self._searchCity(
-            beginCity.neighbours[0].name).distanceFaro
-
         childrenDictionary = {}
         orderedChildrenDictionary = {}
 

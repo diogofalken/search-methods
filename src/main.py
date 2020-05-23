@@ -4,7 +4,7 @@ sys.path.append('../')
 
 from SearchMethods import SearchMethods
 from FileUtils import FileUtils
-from city import City
+from City import City
 
 
 def clear():

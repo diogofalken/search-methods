@@ -1,4 +1,4 @@
-from neighbour import Neighbour
+from Neighbour import Neighbour
 
 
 class City:

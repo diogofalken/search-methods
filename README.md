@@ -44,6 +44,12 @@ You must also implement two methods of **heuristic search**:
 2. `cd search-methods`<br />
 3. Run `python3 src/main.js` to run the program
 
+⁉️ If you are on Windows you need to change `main.js` `fileUtils` call because of path issues between OS.
+
+```python3
+    fileUtils = FileUtils("../data/cities.json", "../data/citiesSL.json")
+```
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.

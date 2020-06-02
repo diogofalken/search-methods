@@ -100,7 +100,7 @@ if __name__ == "__main__":
 
             if (validCity(arrayCities, start) == 1):
                 print("\n--- A* Search Algorithm --- \n")
-                searchMethods.aStarSearch("Viseu", "Faro")
+                searchMethods.aStarSearch(start, "Faro")
         elif choice == "Q" or choice == "q":
             state = False
             exit()
